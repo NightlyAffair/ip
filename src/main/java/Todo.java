@@ -1,4 +1,19 @@
-package PACKAGE_NAME;
+public class Todo extends Task{
 
-public class Todo {
+    Todo(String userInput) {
+        super(userInput);
+    }
+
+    Todo(String check, String description) {
+        super(check, description);
+    }
+
+    public String toString() {
+        return "[T]" + super.toString();
+    }
+
+    @Override
+    public Task mark() {
+        return new Todo("[X]", super.description);
+    }
 }
