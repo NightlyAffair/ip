@@ -16,15 +16,15 @@ public class Manager {
             case "todo":
                 return addTodo(userString);
             case "deadline":
-                break;
+                return addDeadline(userString);
             case "event":
-                break;
+                return addEvent(userString);
             case "list":
                 return listOut();
             case "mark":
                 return markList(userString);
             case "unmark":
-                break;
+                return unmarkList(userString);
         }
 
         return "";
@@ -44,7 +44,19 @@ public class Manager {
     private String addTodo(String userInput) {
         Todo todo = new Todo(userInput);
         this.taskList.add(todo);
-        return todo.toString();
+        return addTaskString(todo.toString());
+    }
+
+    private String addDeadline(String userInput) {
+        Deadline deadline = new Deadline(userInput);
+        this.taskList.add(deadline);
+        return addTaskString(deadline.toString());
+    }
+
+    private String addEvent(String userInput) {
+        Event event = new Event(userInput);
+        this.taskList.add(event);
+        return addTaskString(event.toString());
     }
 
     private String builder(String[] userCommand) {
@@ -79,6 +91,21 @@ public class Manager {
         Task task = this.taskList.get(index).mark();
         this.taskList.set(index, task);
         return task.toString();
+    }
+
+    private String unmarkList(String userInput) {
+        Integer index = Integer.parseInt(userInput) - 1;
+        Task task = this.taskList.get(index).unmark();
+        this.taskList.set(index, task);
+        return task.toString();
+    }
+
+    private String addTaskString(String taskDescription) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Got it. I've added this task:" + '\n' + '\t');
+        stringBuilder.append(taskDescription + '\n');
+        stringBuilder.append("Now you have " + taskList.size() + " tasks in the list");
+        return stringBuilder.toString();
     }
 
 }

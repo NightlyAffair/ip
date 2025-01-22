@@ -21,4 +21,8 @@ public class Task {
         return new Task("[X]", this.description);
     }
 
+    public Task unmark() {
+        return new Task("[]", this.description);
+    }
+
 }
