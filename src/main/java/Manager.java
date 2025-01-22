@@ -10,21 +10,50 @@ public class Manager {
     public String run(String userInput) {
         String[] userCommand = userInput.split(" ");
         String userString = builder(userCommand);
-        switch (userCommand[0]) {
-            case "help":
+        Commands command;
+
+        try {
+            command = Commands.valueOf(userCommand[0].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return "Huh?? Please enter a valid input...";
+        }
+
+        switch (command) {
+            case HELP:
                 return helpString();
-            case "todo":
-                return addTodo(userString);
-            case "deadline":
-                return addDeadline(userString);
-            case "event":
-                return addEvent(userString);
-            case "list":
+            case LIST:
                 return listOut();
-            case "mark":
-                return markList(userString);
-            case "unmark":
-                return unmarkList(userString);
+        }
+
+        try {
+            if (userCommand.length < 2) {
+                throw new MissingInputException();
+            }
+            switch (command) {
+                case TODO:
+                    return addTodo(userString);
+                case DEADLINE:
+                    return addDeadline(userString);
+                case EVENT:
+                    return addEvent(userString);
+            }
+
+            if(Integer.parseInt(userString) < 1 || Integer.parseInt(userString) > taskList.size()) {
+                throw new OutOfIndexException();
+            }
+
+            switch (command) {
+                case MARK:
+                    return markList(userString);
+                case UNMARK:
+                    return unmarkList(userString);
+                case DELETE:
+                    return delete(userString);
+            }
+        } catch (MissingInputException | OutOfIndexException e) {
+            return e.getMessage();
+        } catch (NumberFormatException e) {
+            return "Please enter a number to indicate the list item to be modified";
         }
 
         return "";
@@ -78,7 +107,7 @@ public class Manager {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < this.taskList.size(); i++) {
             stringBuilder.append(Integer.toString(i + 1) + '.');
-            stringBuilder.append(taskList.get(i).toString());
+            stringBuilder.append(this.taskList.get(i).toString());
             if (i != this.taskList.size() - 1) {
                 stringBuilder.append('\n');
             }
@@ -100,12 +129,26 @@ public class Manager {
         return task.toString();
     }
 
+    private String delete(String userInput) {
+        Integer index = Integer.parseInt(userInput) - 1;
+        Task task = this.taskList.get(index);
+        this.taskList.remove(task);
+        return removeTaskString(task.toString());
+    }
+
     private String addTaskString(String taskDescription) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Got it. I've added this task:" + '\n' + "    ");
         stringBuilder.append(taskDescription + '\n');
-        stringBuilder.append("Now you have " + taskList.size() + " tasks in the list.");
+        stringBuilder.append("Now you have " + this.taskList.size() + " tasks in the list.");
         return stringBuilder.toString();
     }
 
+    private String removeTaskString(String taskDescription) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Got it. I've removed this task:" + '\n' + "    ");
+        stringBuilder.append(taskDescription + '\n');
+        stringBuilder.append("Now you have " + this.taskList.size() + " tasks in the list.");
+        return stringBuilder.toString();
+    }
 }
