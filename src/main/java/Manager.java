@@ -53,7 +53,7 @@ public class Manager {
         } catch (MissingInputException | OutOfIndexException e) {
             return e.getMessage();
         } catch (NumberFormatException e) {
-            return "Please enter a number to indicate the list item to be modified";
+            return "Please enter a number to indicate the list item to be modified.";
         }
 
         return "";
