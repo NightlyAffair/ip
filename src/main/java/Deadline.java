@@ -6,8 +6,8 @@ public class Deadline extends Task{
         this.date = userInput.split("/by")[1];
     }
 
-    Deadline(String check, String description, String date) {
-        super(check, description);
+    Deadline(Task other, String date) {
+        super(other);
         this.date = date;
     }
 
@@ -17,11 +17,11 @@ public class Deadline extends Task{
 
     @Override
     public Task mark() {
-        return new Deadline("[X]", super.description, this.date);
+        return new Deadline(super.mark(), this.date);
     }
 
     @Override
     public Task unmark() {
-        return new Deadline("[]", super.description, this.date);
+        return new Deadline(super.unmark(), this.date);
     }
 }

@@ -4,8 +4,8 @@ public class Todo extends Task{
         super(userInput);
     }
 
-    Todo(String check, String description) {
-        super(check, description);
+    Todo(Task other) {
+        super(other);
     }
 
     public String toString() {
@@ -14,11 +14,11 @@ public class Todo extends Task{
 
     @Override
     public Task mark() {
-        return new Todo("[X]", super.description);
+        return new Todo(super.mark());
     }
 
     @Override
     public Task unmark() {
-        return new Todo("[]", super.description);
+        return new Todo(super.unmark());
     }
 }

@@ -102,9 +102,9 @@ public class Manager {
 
     private String addTaskString(String taskDescription) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Got it. I've added this task:" + '\n' + '\t');
+        stringBuilder.append("Got it. I've added this task:" + '\n' + "       ");
         stringBuilder.append(taskDescription + '\n');
-        stringBuilder.append("Now you have " + taskList.size() + " tasks in the list");
+        stringBuilder.append("Now you have " + taskList.size() + " tasks in the list.");
         return stringBuilder.toString();
     }
 

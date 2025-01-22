@@ -8,6 +8,12 @@ public class Event extends Task{
         endDate = userInput.split("/from")[1].split("/to")[1];
     }
 
+    Event(Task other, String startDate, String endDate) {
+        super(other);
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
     Event(String check, String description, String startDate, String endDate) {
         super(check, description);
         this.startDate = startDate;
@@ -20,11 +26,11 @@ public class Event extends Task{
 
     @Override
     public Task mark() {
-        return new Event("[X]", super.description, this.startDate, this.endDate);
+        return new Event(super.mark(), this.startDate, this.endDate);
     }
 
     @Override
     public Task unmark() {
-        return new Event("[]", super.description, this.startDate, this.endDate);
+        return new Event(super.unmark(), this.startDate, this.endDate);
     }
 }

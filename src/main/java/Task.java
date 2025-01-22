@@ -4,13 +4,18 @@ public class Task {
     protected String description;
 
     public Task (String userInput) {
-        this.check = "[]";
+        this.check = "[ ]";
         this.description = userInput;
     }
 
     public Task (String check, String description) {
         this.check = check;
         this.description = description;
+    }
+
+    public Task (Task other) {
+        this.check = other.check;
+        this.description = other.description;
     }
 
     public String toString() {
@@ -22,7 +27,7 @@ public class Task {
     }
 
     public Task unmark() {
-        return new Task("[]", this.description);
+        return new Task("[ ]", this.description);
     }
 
 }

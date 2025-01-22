@@ -16,7 +16,6 @@ public class Cheryl {
                     System.out.println(manager.run(userInput));
                     break;
             }
-
         }
         printOutro();
     }
