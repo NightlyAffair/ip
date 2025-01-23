@@ -8,6 +8,10 @@ public class Todo extends Task{
         super(other);
     }
 
+    Todo(String check, String description) {
+        super(check, description);
+    }
+
     public String toString() {
         return "[T]" + super.toString();
     }
@@ -20,5 +24,10 @@ public class Todo extends Task{
     @Override
     public Task unmark() {
         return new Todo(super.unmark());
+    }
+
+    @Override
+    public String serialize() {
+        return TaskType.TODO + "||" + this.check + "||" + this.description;
     }
 }

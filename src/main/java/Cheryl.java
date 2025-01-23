@@ -5,7 +5,7 @@ public class Cheryl {
         printIntro();
         Scanner scn = new Scanner(System.in);
         Boolean runMainLoop = true;
-        Manager manager = new Manager();
+        Manager manager = new Manager(new FileSystem().getTasks());
         while(runMainLoop) {
             String userInput = scn.nextLine();
             switch (userInput) {
@@ -17,6 +17,7 @@ public class Cheryl {
                     break;
             }
         }
+        manager.pushFile();
         printOutro();
     }
 

@@ -33,4 +33,9 @@ public class Event extends Task{
     public Task unmark() {
         return new Event(super.unmark(), this.startDate, this.endDate);
     }
+
+    @Override
+    public String serialize() {
+        return TaskType.EVENT + "||" + this.check + "||" + this.description + "||" + this.startDate + "||" + this.endDate;
+    }
 }

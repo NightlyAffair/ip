@@ -7,6 +7,10 @@ public class Manager {
         this.taskList = new ArrayList<>();
     }
 
+    Manager(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
     public String run(String userInput) {
         String[] userCommand = userInput.split(" ");
         String userString = builder(userCommand);
@@ -150,5 +154,9 @@ public class Manager {
         stringBuilder.append(taskDescription + '\n');
         stringBuilder.append("Now you have " + this.taskList.size() + " tasks in the list.");
         return stringBuilder.toString();
+    }
+
+    public void pushFile() {
+        new FileSystem(taskList).pushFile();
     }
 }

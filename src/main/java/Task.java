@@ -1,4 +1,6 @@
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serialized {
 
     protected String check;
     protected String description;
@@ -28,6 +30,10 @@ public class Task {
 
     public Task unmark() {
         return new Task("[ ]", this.description);
+    }
+
+    public String serialize() {
+        return TaskType.TASK + "||" + this.check + "||" + this.description;
     }
 
 }

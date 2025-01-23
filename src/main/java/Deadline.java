@@ -11,6 +11,11 @@ public class Deadline extends Task{
         this.date = date;
     }
 
+    Deadline(String check, String description, String date) {
+        super(check, description);
+        this.date = date;
+    }
+
     public String toString() {
         return "[D]" + super.toString() + "(by:" + date + ")";
     }
@@ -23,5 +28,10 @@ public class Deadline extends Task{
     @Override
     public Task unmark() {
         return new Deadline(super.unmark(), this.date);
+    }
+
+    @Override
+    public String serialize() {
+        return TaskType.DEADLINE + "||" + this.check + "||" + this.description + "||" + this.date;
     }
 }
