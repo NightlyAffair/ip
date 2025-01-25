@@ -1,23 +1,33 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task{
-    private String date;
+    private LocalDateTime date;
 
     Deadline(String userInput) {
-        super(userInput.split("/by")[0]);
-        this.date = userInput.split("/by")[1];
+        super(userInput.split("/by ")[0]);
+        this.date = new TimeProcessor(userInput.split("/by ")[1]).getDateTime();
+
     }
 
     Deadline(Task other, String date) {
+        super(other);
+        this.date = new TimeProcessor(date).getDateTime();
+    }
+
+    Deadline(Task other, LocalDateTime date) {
         super(other);
         this.date = date;
     }
 
     Deadline(String check, String description, String date) {
         super(check, description);
-        this.date = date;
+        this.date = new TimeProcessor(date).getDateTime();
     }
 
     public String toString() {
-        return "[D]" + super.toString() + "(by:" + date + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM/dd/yyyy HHmm");
+        return "[D]" + super.toString() + "(by: " + date.format(formatter) + ")";
     }
 
     @Override

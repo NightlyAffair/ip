@@ -1,14 +1,23 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task{
-    private String startDate;
-    private String endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     Event(String userInput) {
-        super(userInput.split("/from")[0]);
-        startDate = userInput.split("/from")[1].split("/to")[0];
-        endDate = userInput.split("/from")[1].split("/to")[1];
+        super(userInput.split("/from ")[0]);
+        startDate = new TimeProcessor(userInput.split("/from ")[1].split(" /to ")[0]).getDateTime();
+        endDate = new TimeProcessor(userInput.split("/from ")[1].split(" /to ")[1]).getDateTime();
     }
 
     Event(Task other, String startDate, String endDate) {
+        super(other);
+        this.startDate = new TimeProcessor(startDate).getDateTime();
+        this.endDate = new TimeProcessor(endDate).getDateTime();
+    }
+
+    Event(Task other, LocalDateTime startDate, LocalDateTime endDate) {
         super(other);
         this.startDate = startDate;
         this.endDate = endDate;
@@ -16,12 +25,19 @@ public class Event extends Task{
 
     Event(String check, String description, String startDate, String endDate) {
         super(check, description);
+        this.startDate = new TimeProcessor(startDate).getDateTime();
+        this.endDate = new TimeProcessor(endDate).getDateTime();
+    }
+
+    Event(String check, String description, LocalDateTime startDate, LocalDateTime endDate) {
+        super(check, description);
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
     public String toString() {
-        return "[E]" + super.toString() + "(from:" + startDate + "to:" + endDate + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM/dd/yyyy HHmm");
+        return "[E]" + super.toString() + "(from: " + startDate.format(formatter) + " to: " + endDate.format(formatter) + ")";
     }
 
     @Override

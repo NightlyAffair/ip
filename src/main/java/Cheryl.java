@@ -18,6 +18,7 @@ public class Cheryl {
             }
         }
         manager.pushFile();
+        scn.close();
         printOutro();
     }
 

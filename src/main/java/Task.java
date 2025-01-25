@@ -1,5 +1,3 @@
-import java.io.Serializable;
-
 public class Task implements Serialized {
 
     protected String check;
