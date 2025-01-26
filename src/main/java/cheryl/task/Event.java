@@ -1,11 +1,15 @@
+package cheryl.task;
+
+import cheryl.ui.TimeProcessor;
+import cheryl.ui.TaskType;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task{
+public class Event extends Task {
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
 
-    Event(String userInput) {
+    public Event(String userInput) {
         super(userInput.split("/from ")[0]);
         startDate = new TimeProcessor(userInput.split("/from ")[1].split(" /to ")[0]).getDateTime();
         endDate = new TimeProcessor(userInput.split("/from ")[1].split(" /to ")[1]).getDateTime();
@@ -29,7 +33,7 @@ public class Event extends Task{
         this.endDate = new TimeProcessor(endDate).getDateTime();
     }
 
-    Event(String check, String description, LocalDateTime startDate, LocalDateTime endDate) {
+    public Event(String check, String description, LocalDateTime startDate, LocalDateTime endDate) {
         super(check, description);
         this.startDate = startDate;
         this.endDate = endDate;

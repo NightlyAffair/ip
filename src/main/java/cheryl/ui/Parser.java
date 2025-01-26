@@ -1,3 +1,5 @@
+package cheryl.ui;
+
 public class Parser {
     //Parses out details from user input
     static String details(String[] userCommand) {

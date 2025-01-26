@@ -1,13 +1,17 @@
+package cheryl.data;
+
+import cheryl.task.*;
+
 import java.util.ArrayList;
 
 public class TaskList {
     private final ArrayList<Task> taskList;
 
-    TaskList() {
+    public TaskList() {
         this.taskList = new ArrayList<>();
     }
 
-    TaskList(ArrayList<Task> taskList) {
+    public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
     }
 

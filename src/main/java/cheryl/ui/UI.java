@@ -1,9 +1,11 @@
+package cheryl.ui;
+
 import java.util.Scanner;
 
 public class UI {
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    static void printIntro() {
+    public static void printIntro() {
         String introLineOne = "Hello! I'm Cheryl";
         String introLineTwo = "What can I do for you?";
         String introLineThree = "Say help if you don't know what you are doing";
@@ -12,12 +14,12 @@ public class UI {
         System.out.println(introLineThree);
     }
 
-    static void printOutro() {
+    public static void printOutro() {
         String outroLineOne = "Bye. Hope to see you again soon!";
         System.out.println(outroLineOne);
     }
 
-    static String scan() {
+    public static String scan() {
         return SCANNER.nextLine();
     }
 

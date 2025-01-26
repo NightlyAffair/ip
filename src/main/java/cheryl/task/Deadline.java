@@ -1,10 +1,14 @@
+package cheryl.task;
+
+import cheryl.ui.TimeProcessor;
+import cheryl.ui.TaskType;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
     private final LocalDateTime date;
 
-    Deadline(String userInput) {
+    public Deadline(String userInput) {
         super(userInput.split("/by ")[0]);
         this.date = new TimeProcessor(userInput.split("/by ")[1]).getDateTime();
 
@@ -15,7 +19,7 @@ public class Deadline extends Task{
         this.date = new TimeProcessor(date).getDateTime();
     }
 
-    Deadline(Task other, LocalDateTime date) {
+    public Deadline(Task other, LocalDateTime date) {
         super(other);
         this.date = date;
     }

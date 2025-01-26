@@ -1,4 +1,7 @@
-import java.util.Scanner;
+import cheryl.data.FileSystem;
+import cheryl.data.FileSystem;
+import cheryl.ui.Manager;
+import cheryl.ui.UI;
 
 public class Cheryl {
     private final Manager manager;

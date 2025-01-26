@@ -1,19 +1,24 @@
+package cheryl.data;
+
+import cheryl.ui.TimeProcessor;
+import cheryl.ui.TaskType;
+import cheryl.exception.FileCorruptedException;
+import cheryl.task.*;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class FileSystem {
     private final String pathName = "./data/tasks.txt";
     private ArrayList<Task> tasks;
 
-    FileSystem() {
+    public FileSystem() {
         tasks = new ArrayList<>();
     }
 
-    FileSystem(ArrayList<Task> tasks) {
+    public FileSystem(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
@@ -61,16 +66,16 @@ public class FileSystem {
         String[] details = line.split("\\|\\|");
         try {
             switch (TaskType.valueOf(details[0])) {
-                case TASK -> {
+                case TaskType.TASK -> {
                     return new Task(details[1], details[2]);
                 }
-                case TODO -> {
+                case TaskType.TODO -> {
                     return new Todo(details[1], details[2]);
                 }
-                case DEADLINE -> {
+                case TaskType.DEADLINE -> {
                     return new Deadline(new Task(details[1], details[2]), new TimeProcessor(details[3]).getDateTime());
                 }
-                case EVENT -> {
+                case TaskType.EVENT -> {
                     return new Event(details[1], details[2], new TimeProcessor(details[3]).getDateTime(), new TimeProcessor(details[4]).getDateTime());
                 }
                 default -> {

@@ -1,3 +1,7 @@
+package cheryl.task;
+
+import cheryl.ui.TaskType;
+
 public class Task implements Serialized {
 
     protected String check;

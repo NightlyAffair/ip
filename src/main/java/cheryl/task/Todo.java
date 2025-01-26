@@ -1,6 +1,10 @@
-public class Todo extends Task{
+package cheryl.task;
 
-    Todo(String userInput) {
+import cheryl.ui.TaskType;
+
+public class Todo extends Task {
+
+    public Todo(String userInput) {
         super(userInput);
     }
 
@@ -8,7 +12,7 @@ public class Todo extends Task{
         super(other);
     }
 
-    Todo(String check, String description) {
+    public Todo(String check, String description) {
         super(check, description);
     }
 

@@ -1,13 +1,21 @@
+package cheryl.ui;
+
 import java.util.ArrayList;
 
+import cheryl.data.FileSystem;
+import cheryl.data.TaskList;
+import cheryl.exception.MissingInputException;
+import cheryl.exception.OutOfIndexException;
+import cheryl.task.Task;
+
 public class Manager {
-    private TaskList taskList;
+    private final TaskList taskList;
 
     Manager() {
         this.taskList = new TaskList();
     }
 
-    Manager(ArrayList<Task> taskList) {
+    public Manager(ArrayList<Task> taskList) {
         this.taskList = new TaskList(taskList);
     }
 

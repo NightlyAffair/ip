@@ -1,14 +1,15 @@
+package cheryl.ui;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
 
 public class TimeProcessor {
     private LocalDateTime dateTime;
 
-    TimeProcessor(String dateTime) {
+    public TimeProcessor(String dateTime) {
         try {
             //Sample String: 2/12/2019 1800
             DateTimeFormatter formatter;
@@ -26,11 +27,11 @@ public class TimeProcessor {
         }
     }
 
-    TimeProcessor(LocalDateTime dateTime) {
+    public TimeProcessor(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
-    LocalDateTime getDateTime() {return dateTime;}
+    public LocalDateTime getDateTime() {return dateTime;}
 
 
 }
