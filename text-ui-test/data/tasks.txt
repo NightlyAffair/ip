@@ -1,2 +1,2 @@
-DEADLINE||[ ]||return book ||2019-12-02T18:00
-EVENT||[ ]||project meeting ||2019-12-02T18:00||2019-12-02T20:00
+DEADLINE||[ ]||return book ||2/12/2019 1800
+EVENT||[ ]||project meeting ||2/12/2019 1800||2/12/2019 2000

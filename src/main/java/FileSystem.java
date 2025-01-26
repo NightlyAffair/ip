@@ -1,6 +1,8 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class FileSystem {
@@ -66,10 +68,10 @@ public class FileSystem {
                     return new Todo(details[1], details[2]);
                 }
                 case DEADLINE -> {
-                    return new Deadline(details[1], details[2], details[3]);
+                    return new Deadline(new Task(details[1], details[2]), new TimeProcessor(details[3]).getDateTime());
                 }
                 case EVENT -> {
-                    return new Event(details[1], details[2], details[3], details[4]);
+                    return new Event(details[1], details[2], new TimeProcessor(details[3]).getDateTime(), new TimeProcessor(details[4]).getDateTime());
                 }
                 default -> {
                     throw new FileCorruptedException();

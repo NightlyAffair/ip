@@ -22,8 +22,7 @@ public class TimeProcessor {
 
         } catch (DateTimeParseException e) {
             System.out.println("Invalid date format: " + dateTime + "\n please provide date and time again in the following format: 2/12/2019 1800");
-            Scanner scanner = new Scanner(System.in);
-            this.dateTime = new TimeProcessor(scanner.nextLine()).dateTime;
+            this.dateTime = new TimeProcessor(UI.scan()).dateTime;
         }
     }
 

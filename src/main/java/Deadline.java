@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task{
-    private LocalDateTime date;
+    private final LocalDateTime date;
 
     Deadline(String userInput) {
         super(userInput.split("/by ")[0]);
@@ -42,6 +42,7 @@ public class Deadline extends Task{
 
     @Override
     public String serialize() {
-        return TaskType.DEADLINE + "||" + this.check + "||" + this.description + "||" + this.date;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        return TaskType.DEADLINE + "||" + this.check + "||" + this.description + "||" + this.date.format(formatter);
     }
 }

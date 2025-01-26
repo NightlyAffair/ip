@@ -2,8 +2,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task{
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private final LocalDateTime startDate;
+    private final LocalDateTime endDate;
 
     Event(String userInput) {
         super(userInput.split("/from ")[0]);
@@ -52,6 +52,8 @@ public class Event extends Task{
 
     @Override
     public String serialize() {
-        return TaskType.EVENT + "||" + this.check + "||" + this.description + "||" + this.startDate + "||" + this.endDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+        return TaskType.EVENT + "||" + this.check + "||" + this.description + "||" + this.startDate.format(formatter)
+                + "||" + this.endDate.format(formatter);
     }
 }
