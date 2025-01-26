@@ -66,16 +66,16 @@ public class FileSystem {
         String[] details = line.split("\\|\\|");
         try {
             switch (TaskType.valueOf(details[0])) {
-                case TaskType.TASK -> {
+                case TASK -> {
                     return new Task(details[1], details[2]);
                 }
-                case TaskType.TODO -> {
+                case TODO -> {
                     return new Todo(details[1], details[2]);
                 }
-                case TaskType.DEADLINE -> {
+                case DEADLINE -> {
                     return new Deadline(new Task(details[1], details[2]), new TimeProcessor(details[3]).getDateTime());
                 }
-                case TaskType.EVENT -> {
+                case EVENT -> {
                     return new Event(details[1], details[2], new TimeProcessor(details[3]).getDateTime(), new TimeProcessor(details[4]).getDateTime());
                 }
                 default -> {
