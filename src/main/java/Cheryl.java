@@ -1,5 +1,4 @@
-import cheryl.data.FileSystem;
-import cheryl.data.FileSystem;
+import cheryl.FileSystem;
 import cheryl.ui.Manager;
 import cheryl.ui.UI;
 

@@ -2,8 +2,8 @@ package cheryl.ui;
 
 import java.util.ArrayList;
 
-import cheryl.data.FileSystem;
-import cheryl.data.TaskList;
+import cheryl.FileSystem;
+import cheryl.TaskList;
 import cheryl.exception.MissingInputException;
 import cheryl.exception.OutOfIndexException;
 import cheryl.task.Task;
