@@ -1,6 +1,6 @@
 package cheryl.data;
 
-import cheryl.TaskList;
+import cheryl.util.TaskList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

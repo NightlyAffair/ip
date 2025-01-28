@@ -1,4 +1,4 @@
-package cheryl;
+package cheryl.util;
 
 import cheryl.ui.TimeProcessor;
 import cheryl.ui.TaskType;
