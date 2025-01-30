@@ -90,4 +90,7 @@ public class Task implements Serialized {
         return TaskType.TASK + "||" + this.check + "||" + this.description;
     }
 
+    public boolean has(String searchPhrase) {
+        return this.description.contains(searchPhrase);
+    }
 }

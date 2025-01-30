@@ -1,4 +1,4 @@
-package cheryl;
+package cheryl.util;
 
 import cheryl.task.*;
 
@@ -124,6 +124,10 @@ public class TaskList {
         Task task = this.taskList.get(index);
         this.taskList.remove(task);
         return removeTaskString(task.toString());
+    }
+
+    public String searchTask(String searchPhrase) {
+        return SearchSystem.find(searchPhrase, taskList);
     }
 
     /**

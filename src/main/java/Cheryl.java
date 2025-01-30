@@ -1,4 +1,4 @@
-import cheryl.FileSystem;
+import cheryl.util.FileSystem;
 import cheryl.ui.Manager;
 import cheryl.ui.UI;
 

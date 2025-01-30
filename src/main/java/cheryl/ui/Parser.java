@@ -17,4 +17,8 @@ public class Parser {
 
         return stringBuilder.toString();
     }
+
+    static String[] mainCommand(String userInput) {
+        return userInput.split(" ");
+    }
 }
