@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class FileSystem {
     private final String pathName = "./data/tasks.txt";
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     public FileSystem() {
         tasks = new ArrayList<>();
@@ -78,9 +78,7 @@ public class FileSystem {
                 case EVENT -> {
                     return new Event(details[1], details[2], new TimeProcessor(details[3]).getDateTime(), new TimeProcessor(details[4]).getDateTime());
                 }
-                default -> {
-                    throw new FileCorruptedException();
-                }
+                default -> throw new FileCorruptedException();
             }
         } catch (FileCorruptedException e) {
             System.out.println(e.getMessage());
