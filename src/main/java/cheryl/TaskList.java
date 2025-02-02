@@ -1,4 +1,4 @@
-package cheryl.data;
+package cheryl;
 
 import cheryl.task.*;
 
