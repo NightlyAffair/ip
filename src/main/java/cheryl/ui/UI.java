@@ -6,7 +6,7 @@ public class UI {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void printIntro() {
-        String introLineOne = "Hello! I'm cheryl.main.Cheryl";
+        String introLineOne = "Hello! I'm cheryl.Cheryl";
         String introLineTwo = "What can I do for you?";
         String introLineThree = "Say help if you don't know what you are doing";
         System.out.println(introLineOne);

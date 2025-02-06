@@ -15,7 +15,7 @@ public class Cheryl {
     private final Manager manager;
 
     /**
-     * Constructs a new cheryl.main.Cheryl instance.
+     * Constructs a new cheryl.Cheryl instance.
      * Initializes the manager with tasks loaded from the file system.
      */
     Cheryl() {
@@ -41,8 +41,8 @@ public class Cheryl {
     }
 
     /**
-     * Entry point of the cheryl.main.Cheryl chatbot application.
-     * Creates a new cheryl.main.Cheryl instance and starts the chatbot.
+     * Entry point of the cheryl.Cheryl chatbot application.
+     * Creates a new cheryl.Cheryl instance and starts the chatbot.
      *
      * @param args Command-line arguments (not used).
      */

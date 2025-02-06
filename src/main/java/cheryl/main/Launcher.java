@@ -1,4 +1,4 @@
-package cheryl.main;
+package cheryl;
 
 import javafx.application.Application;
 
