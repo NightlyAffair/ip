@@ -1,5 +1,8 @@
 package cheryl.ui;
 
 public enum TaskType {
-    TASK,EVENT,DEADLINE,TODO
+  TASK,
+  EVENT,
+  DEADLINE,
+  TODO
 }
