@@ -1,5 +1,3 @@
-package cheryl;
-
 import javafx.application.Application;
 
 /**

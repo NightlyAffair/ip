@@ -18,7 +18,7 @@ public class Cheryl {
      * Constructs a new cheryl.Cheryl instance.
      * Initializes the manager with tasks loaded from the file system.
      */
-    Cheryl() {
+    public Cheryl() {
         this.manager = new Manager(new FileSystem().getTasks());
     }
 
@@ -38,6 +38,13 @@ public class Cheryl {
         }
         manager.pushFile();
         UI.printOutro();
+    }
+
+    public String run(String userInput) {
+        UI.printIntro();
+        manager.pushFile();
+        UI.printOutro();
+        return manager.run(userInput);
     }
 
     /**
