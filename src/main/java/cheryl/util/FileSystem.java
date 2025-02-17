@@ -55,6 +55,7 @@ public class FileSystem {
     } catch (IOException e) {
       return tasks;
     }
+    assert !tasks.isEmpty();
     return tasks;
   }
 

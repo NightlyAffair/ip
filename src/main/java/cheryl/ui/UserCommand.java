@@ -6,7 +6,7 @@ import cheryl.util.TaskList;
 
 public class UserCommand {
 
-  static <Command> String run(String userInput, TaskList taskList) {
+  static String run(String userInput, TaskList taskList) {
     Commands command;
     String[] userCommand = Parser.mainCommand(userInput);
     String userString = Parser.details(userCommand);
@@ -16,6 +16,7 @@ public class UserCommand {
     } catch (IllegalArgumentException e) {
       return "Huh?? Please enter a valid input...";
     }
+
 
     switch (command) {
       case HELP:
