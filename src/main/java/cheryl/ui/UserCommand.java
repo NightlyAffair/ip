@@ -6,7 +6,7 @@ import cheryl.util.TaskList;
 
 public class UserCommand {
 
-  static <Command> String run(String userInput, TaskList taskList) {
+  static String run(String userInput, TaskList taskList) {
     Commands command;
     String[] userCommand = Parser.mainCommand(userInput);
     String userString = Parser.details(userCommand);

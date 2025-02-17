@@ -1,3 +1,5 @@
+package cheryl.main;
+
 import cheryl.util.FileSystem;
 import cheryl.ui.Manager;
 import cheryl.ui.UI;
@@ -16,18 +18,18 @@ public class Cheryl {
    * Constructs a new Cheryl instance. Initializes the manager with tasks loaded from the file
    * system.
    */
-  Cheryl() {
+  public Cheryl() {
     this.manager = new Manager(new FileSystem().getTasks());
   }
 
   /** Runs the main loop until user gives exit command. */
   public void run() {
     UI.printIntro();
-    Boolean runMainLoop = true;
-    while (runMainLoop) {
+    Boolean isMainLoopRunning = true;
+    while (isMainLoopRunning) {
       String userInput = UI.scan();
       if (userInput.equals("bye")) {
-        runMainLoop = false;
+        isMainLoopRunning = false;
       } else {
         System.out.println(manager.run(userInput));
       }
@@ -36,7 +38,9 @@ public class Cheryl {
     UI.printOutro();
   }
 
+  /** For use with GUI code to return response String **/
     public String run(String userInput) {
+        assert userInput != null;
         UI.printIntro();
         manager.pushFile();
         UI.printOutro();
