@@ -1,5 +1,6 @@
 package cheryl.task;
 
+import cheryl.main.Data;
 import cheryl.ui.TaskType;
 
 /**
@@ -9,7 +10,7 @@ import cheryl.ui.TaskType;
  *
  * @author Nithvin Leelakrishnan
  */
-public class Task implements Serialized {
+public class Task implements Data {
   /** The completion status of the task. Can be "[ ]" for incomplete or "[X]" for completed. */
   protected String check;
 
