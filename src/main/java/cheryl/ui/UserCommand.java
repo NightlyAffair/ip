@@ -17,7 +17,6 @@ public class UserCommand {
       return "Huh?? Please enter a valid input...";
     }
 
-
     switch (command) {
       case HELP:
         return UI.helpString();
