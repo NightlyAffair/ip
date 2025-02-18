@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-import cheryl.main.Cheryl;
+import cheryl.Cheryl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

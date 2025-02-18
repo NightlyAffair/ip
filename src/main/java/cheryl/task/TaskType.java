@@ -1,4 +1,4 @@
-package cheryl.ui;
+package cheryl.task;
 
 public enum TaskType {
   TASK,

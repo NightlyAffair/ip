@@ -1,4 +1,4 @@
-import cheryl.main.Cheryl;
+import cheryl.Cheryl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -6,6 +6,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 /**
  * Controller for the main GUI.
  */
@@ -46,6 +50,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+
         userInput.clear();
     }
 }

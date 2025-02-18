@@ -1,4 +1,6 @@
-package cheryl.ui;
+package cheryl.inputproccessor;
+
+import cheryl.ui.TaskUI;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +28,7 @@ public class TimeProcessor {
           "Invalid date format: "
               + dateTime
               + "\n please provide date and time again in the following format: 2/12/2019 1800");
-      this.dateTime = new TimeProcessor(UI.scan()).dateTime;
+      this.dateTime = new TimeProcessor(Parser.scan()).dateTime;
     }
   }
 

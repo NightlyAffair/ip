@@ -2,7 +2,7 @@ package cheryl.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import cheryl.util.TaskList;
+import cheryl.task.TaskList;
 import org.junit.jupiter.api.Test;
 
 public class TaskListTest {

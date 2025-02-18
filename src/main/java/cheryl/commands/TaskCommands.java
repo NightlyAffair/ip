@@ -1,6 +1,6 @@
-package cheryl.ui;
+package cheryl.commands;
 
-public enum Commands {
+public enum TaskCommands {
   HELP,
   TODO,
   DEADLINE,

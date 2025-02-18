@@ -1,6 +1,6 @@
 package cheryl.task;
 
-import cheryl.ui.TaskType;
+import cheryl.util.Serialized;
 
 /**
  * Represents a task with a description and completion status. Provides methods to mark the task as

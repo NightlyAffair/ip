@@ -1,31 +1,53 @@
-package cheryl.ui;
+package cheryl.manager;
 
 import cheryl.exception.MissingInputException;
 import cheryl.exception.OutOfIndexException;
-import cheryl.util.TaskList;
+import cheryl.inputproccessor.Parser;
+import cheryl.task.Task;
+import cheryl.commands.TaskCommands;
+import cheryl.ui.TaskUI;
+import cheryl.util.FileSystem;
+import cheryl.task.TaskList;
+import java.util.ArrayList;
 
-public class UserCommand {
+public class TaskManager implements Manager {
+  private final TaskList taskList;
 
-  static String run(String userInput, TaskList taskList) {
-    Commands command;
-    String[] userCommand = Parser.mainCommand(userInput);
-    String userString = Parser.details(userCommand);
+  TaskManager() {
+    this.taskList = new TaskList();
+  }
 
-    try {
-      command = Commands.valueOf(userCommand[0].toUpperCase());
-    } catch (IllegalArgumentException e) {
-      return "Huh?? Please enter a valid input...";
+  public TaskManager(ArrayList<Task> taskList) {
+    this.taskList = new TaskList(taskList);
+  }
+
+  public String run() {
+    TaskCommands command;
+    TaskUI.printIntroString();
+    String userCommand;
+    while (!Parser.mainCommand(userCommand = Parser.scan()).equals("0")) {
+      try {
+        command = TaskCommands.valueOf((Parser.mainCommand(userCommand)).toUpperCase());
+        System.out.println(runCommand(command, userCommand));
+      } catch (IllegalArgumentException e) {
+        System.out.println( "Huh?? Please enter a valid input...");
+      }
     }
+    return "0";
+  }
 
+  public String runCommand(TaskCommands command, String userCommand) {
     switch (command) {
       case HELP:
-        return UI.helpString();
+        return TaskUI.helpString();
       case LIST:
         return taskList.listOut();
     }
 
+    String userString = Parser.details(userCommand);
+
     try {
-      if (userCommand.length < 2) {
+      if (userString.isEmpty()) {
         throw new MissingInputException();
       }
       switch (command) {
@@ -57,7 +79,11 @@ public class UserCommand {
     } catch (NumberFormatException e) {
       return "Please enter a number to indicate the list item to be modified.";
     }
-
     return "";
+  }
+
+
+  public void pushFile() {
+    new FileSystem(taskList.get()).pushFile();
   }
 }

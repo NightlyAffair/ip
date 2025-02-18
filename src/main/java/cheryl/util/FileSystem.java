@@ -2,8 +2,8 @@ package cheryl.util;
 
 import cheryl.exception.FileCorruptedException;
 import cheryl.task.*;
-import cheryl.ui.TaskType;
-import cheryl.ui.TimeProcessor;
+import cheryl.task.TaskType;
+import cheryl.inputproccessor.TimeProcessor;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;

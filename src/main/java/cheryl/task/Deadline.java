@@ -1,7 +1,6 @@
 package cheryl.task;
 
-import cheryl.ui.TaskType;
-import cheryl.ui.TimeProcessor;
+import cheryl.inputproccessor.TimeProcessor;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

@@ -1,7 +1,5 @@
 package cheryl.task;
 
-import cheryl.ui.TaskType;
-
 /**
  * Represents a "Todo" task, a specific type of task with no additional attributes. Extends the
  * {@link Task} class and provides specific behavior for marking, unmarking, and serializing a todo

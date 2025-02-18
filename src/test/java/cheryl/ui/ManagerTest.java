@@ -1,13 +1,15 @@
 package cheryl.ui;
 
+import cheryl.manager.MainManager;
+import cheryl.manager.Manager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ManagerTest {
   @Test
   public void helpStringTest() {
-    Manager manager = new Manager();
-    String helpString = manager.run("help");
+    MainManager manager = new MainManager();
+    String helpString = manager.run();
     String expected =
         """
                 Say todo to track a todo like todo borrow book
@@ -23,8 +25,8 @@ public class ManagerTest {
 
   @Test
   public void taskCommandTest() {
-    Manager manager = new Manager();
-    String taskString = manager.run("todo borrow book");
+    Manager manager = new MainManager();
+    String taskString = manager.run();
     String expected =
         """
                 Got it. I've added this task:

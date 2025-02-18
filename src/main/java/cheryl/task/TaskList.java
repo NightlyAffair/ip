@@ -1,6 +1,7 @@
-package cheryl.util;
+package cheryl.task;
 
-import cheryl.task.*;
+import cheryl.util.SearchSystem;
+
 import java.util.ArrayList;
 
 /**

@@ -1,9 +1,8 @@
-package cheryl.main;
+package cheryl;
 
-import cheryl.util.FileSystem;
-import cheryl.ui.Manager;
-import cheryl.ui.UI;
-import cheryl.util.FileSystem;
+import cheryl.inputproccessor.Parser;
+import cheryl.manager.MainManager;
+import cheryl.ui.MainUI;
 
 /**
  * Represents the overall chatbot Provides methods to begin running the chatbot.
@@ -12,39 +11,37 @@ import cheryl.util.FileSystem;
  * @version 1.0
  */
 public class Cheryl {
-  private final Manager manager;
+  private final MainManager manager;
 
   /**
    * Constructs a new Cheryl instance. Initializes the manager with tasks loaded from the file
    * system.
    */
   public Cheryl() {
-    this.manager = new Manager(new FileSystem().getTasks());
+    this.manager = new MainManager();
   }
 
   /** Runs the main loop until user gives exit command. */
   public void run() {
-    UI.printIntro();
+    MainUI.printIntro();
     Boolean isMainLoopRunning = true;
     while (isMainLoopRunning) {
-      String userInput = UI.scan();
-      if (userInput.equals("bye")) {
+      String exitCommand = manager.run();
+      if (exitCommand.equals("bye")) {
         isMainLoopRunning = false;
-      } else {
-        System.out.println(manager.run(userInput));
       }
     }
-    manager.pushFile();
-    UI.printOutro();
+    this.manager.pushFile();
+    MainUI.printOutro();
   }
 
   /** For use with GUI code to return response String **/
     public String run(String userInput) {
         assert userInput != null;
-        UI.printIntro();
+        MainUI.printIntro();
         manager.pushFile();
-        UI.printOutro();
-        return manager.run(userInput);
+        MainUI.printOutro();
+        return manager.run();
     }
 
     /**
