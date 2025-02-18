@@ -2,6 +2,8 @@ package cheryl.task;
 
 import cheryl.main.Data;
 import cheryl.ui.TaskType;
+import cheryl.util.DataListTypes;
+import cheryl.util.DataTypes;
 
 /**
  * Represents a task with a description and completion status. Provides methods to mark the task as
@@ -10,7 +12,7 @@ import cheryl.ui.TaskType;
  *
  * @author Nithvin Leelakrishnan
  */
-public class Task implements Data {
+public class Task extends Data {
   /** The completion status of the task. Can be "[ ]" for incomplete or "[X]" for completed. */
   protected String check;
 
@@ -24,6 +26,7 @@ public class Task implements Data {
    * @param userInput The description of the task.
    */
   public Task(String userInput) {
+    super(DataTypes.TASK);
     this.check = "[ ]";
     this.description = userInput;
   }
@@ -35,6 +38,7 @@ public class Task implements Data {
    * @param description The description of the task.
    */
   public Task(String check, String description) {
+    super(DataTypes.TASK);
     this.check = check;
     this.description = description;
   }
@@ -45,6 +49,7 @@ public class Task implements Data {
    * @param other The task to copy.
    */
   public Task(Task other) {
+    super(DataTypes.TASK);
     this.check = other.check;
     this.description = other.description;
   }

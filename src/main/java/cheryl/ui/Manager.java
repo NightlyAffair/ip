@@ -1,26 +1,27 @@
 package cheryl.ui;
 
+import cheryl.main.DataList;
 import cheryl.task.Task;
 import cheryl.util.FileSystem;
 import cheryl.util.TaskList;
 import java.util.ArrayList;
 
 public class Manager {
-  private final TaskList taskList;
+  private final DataList dataList;
 
-  Manager() {
-    this.taskList = new TaskList();
+  public Manager() {
+    dataList = new DataList();
   }
 
-  public Manager(ArrayList<Task> taskList) {
-    this.taskList = new TaskList(taskList);
+  public Manager(DataList dataList) {
+    this.dataList = dataList;
   }
 
   public String run(String userInput) {
-    return UserCommand.run(userInput, taskList);
+    return UserCommand.run(userInput, dataList);
   }
 
   public void pushFile() {
-    new FileSystem(taskList.get()).pushFile();
+    new FileSystem(dataList).pushFile();
   }
 }

@@ -2,11 +2,12 @@ package cheryl.ui;
 
 import cheryl.exception.MissingInputException;
 import cheryl.exception.OutOfIndexException;
+import cheryl.main.DataList;
 import cheryl.util.TaskList;
 
 public class UserCommand {
 
-  static String run(String userInput, TaskList taskList) {
+  static String run(String userInput, DataList dataList) {
     Commands command;
     String[] userCommand = Parser.mainCommand(userInput);
     String userString = Parser.details(userCommand);

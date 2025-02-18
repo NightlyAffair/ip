@@ -1,6 +1,10 @@
 package cheryl.util;
 
+import cheryl.exception.FileCorruptedException;
 import cheryl.task.*;
+import cheryl.ui.TaskType;
+import cheryl.ui.TimeProcessor;
+
 import java.util.ArrayList;
 
 /**
@@ -10,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Nithvin Leelakrishnan
  */
-public class TaskList {
+public class TaskList implements DataStore {
 
   /** The list that stores all the tasks. */
   private final ArrayList<Task> taskList;
@@ -178,5 +182,43 @@ public class TaskList {
    */
   public int size() {
     return this.taskList.size();
+  }
+
+  public String serialize() {
+      StringBuilder stringBuilder = new StringBuilder();
+      for(Task task : this.taskList) {
+        stringBuilder.append(DataListTypes.TASKLIST + "||").append(task.serialize()).append('\n');
+      }
+      return stringBuilder.toString();
+  }
+
+
+  public Task deserialize(String line) {
+    String[] details = line.split("\\|\\|");
+    try {
+      switch (TaskType.valueOf(details[0])) {
+        case TASK -> {
+          return new Task(details[1], details[2]);
+        }
+        case TODO -> {
+          return new Todo(details[1], details[2]);
+        }
+        case DEADLINE -> {
+          return new Deadline(
+                  new Task(details[1], details[2]), new TimeProcessor(details[3]).getDateTime());
+        }
+        case EVENT -> {
+          return new Event(
+                  details[1],
+                  details[2],
+                  new TimeProcessor(details[3]).getDateTime(),
+                  new TimeProcessor(details[4]).getDateTime());
+        }
+        default -> throw new FileCorruptedException();
+      }
+    } catch (FileCorruptedException e) {
+      System.out.println(e.getMessage());
+    }
+    return null;
   }
 }
