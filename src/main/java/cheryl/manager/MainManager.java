@@ -36,6 +36,20 @@ public class MainManager implements Manager {
         return "bye";
     }
 
+    public String run(String userInput) {
+        String command = Parser.mainCommand(userInput);
+        try {
+            switch (command) {
+                case "1":
+                    return taskManager.run();
+                default:
+                    throw new OutOfIndexException();
+            }
+        } catch (OutOfIndexException e) {
+            return e.getMessage();
+        }
+    }
+
     public static String options() {
         StringBuilder sb = new StringBuilder();
         sb.append("Please choose one of the following options:" + "\n");

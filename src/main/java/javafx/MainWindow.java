@@ -1,5 +1,12 @@
+package javafx;
+
 import cheryl.Cheryl;
+import cheryl.manager.MainManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -7,7 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintStream;
 
 /**
@@ -26,16 +34,28 @@ public class MainWindow extends AnchorPane {
     private Cheryl cheryl;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image cherylImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     @FXML
     public void initialize() {
+        //Ensure scrollPane scrolls to the latest message
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
+        dialogContainer.getChildren().add(DialogBox.getCherylDialog(displayMessage(), cherylImage));
+        dialogContainer.getChildren().add(DialogBox.getCherylDialog(startingMessage(), cherylImage));
     }
 
     /** Injects the Duke instance */
     public void setCheryl(Cheryl cheryl) {
         this.cheryl = cheryl;
+    }
+
+    public String displayMessage() {
+        return "Hello! I'm Cheryl" + "\n" + "What can I do for you?";
+    }
+
+    public String startingMessage() {
+        return MainManager.options();
     }
 
     /**
@@ -48,9 +68,10 @@ public class MainWindow extends AnchorPane {
         String response = cheryl.run(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getCherylDialog(response, cherylImage)
         );
 
         userInput.clear();
     }
 }
+

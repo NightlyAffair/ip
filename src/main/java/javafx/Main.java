@@ -1,3 +1,5 @@
+package javafx;
+
 import java.io.IOException;
 
 import cheryl.Cheryl;
@@ -11,7 +13,6 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-
     private Cheryl cheryl = new Cheryl();
 
     @Override

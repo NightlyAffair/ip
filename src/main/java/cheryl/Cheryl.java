@@ -38,10 +38,8 @@ public class Cheryl {
   /** For use with GUI code to return response String **/
     public String run(String userInput) {
         assert userInput != null;
-        MainUI.printIntro();
-        manager.pushFile();
         MainUI.printOutro();
-        return manager.run();
+        return manager.run(userInput);
     }
 
     /**
