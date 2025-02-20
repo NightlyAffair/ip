@@ -1,13 +1,14 @@
 package cheryl.manager;
 
+import cheryl.exception.FileCorruptedException;
 import cheryl.exception.MissingInputException;
 import cheryl.exception.OutOfIndexException;
 import cheryl.inputproccessor.Parser;
-import cheryl.task.Task;
+import cheryl.inputproccessor.TimeProcessor;
+import cheryl.task.*;
 import cheryl.commands.TaskCommands;
 import cheryl.ui.TaskUI;
 import cheryl.util.FileSystem;
-import cheryl.task.TaskList;
 import javafx.scene.web.HTMLEditorSkin;
 
 import java.util.ArrayList;
@@ -95,16 +96,48 @@ public class TaskManager implements Manager {
     return "";
   }
 
-
-  public void pushFile() {
-    new FileSystem(taskList.get()).pushFile();
-  }
-
   public void setPointer(ManagerTypes pointer) {
     this.pointer = pointer;
   }
 
   public static String options() {
     return TaskUI.helpString();
+  }
+
+  public String write() {
+    return taskList.serialize();
+  }
+
+  public void read(String readString) {
+    String[] details = readString.split("\\|\\|");
+
+    try {
+      switch (TaskType.valueOf(details[0])) {
+        case TASK -> {
+          taskList.addTask(new Task(details[1], details[2]));
+        }
+        case TODO -> {
+          taskList.addTask(new Todo(details[1], details[2]));
+        }
+        case DEADLINE -> {
+          taskList.addTask(new Deadline(
+                  new Task(details[1], details[2]), new TimeProcessor(details[3]).getDateTime()));
+        }
+        case EVENT -> {
+          taskList.addTask(new Event(
+                  details[1],
+                  details[2],
+                  new TimeProcessor(details[3]).getDateTime(),
+                  new TimeProcessor(details[4]).getDateTime()));
+        }
+        default -> throw new FileCorruptedException();
+      }
+    } catch (FileCorruptedException e) {
+      System.err.println(e.getMessage());
+    }
+  }
+
+  public void clear() {
+    this.taskList.clear();
   }
 }

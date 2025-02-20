@@ -71,7 +71,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getCherylDialog(response, cherylImage)
         );
 
-        userInput.clear();
+            userInput.clear();
     }
 }
 

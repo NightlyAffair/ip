@@ -30,4 +30,13 @@ public class Parser {
   public static String mainCommand(String userInput) {
     return userInput.split(" ")[0];
   }
+
+  public static String deserializeCommand(String userInput) {
+    return userInput.split("\\|\\|\\|")[0];
+  }
+
+  public static String deserializeDetails(String userInput) {
+    return userInput.split("\\|\\|\\|")[1];
+
+  }
 }

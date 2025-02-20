@@ -3,6 +3,7 @@ package cheryl;
 import cheryl.inputproccessor.Parser;
 import cheryl.manager.MainManager;
 import cheryl.ui.MainUI;
+import cheryl.util.FileSystem;
 
 /**
  * Represents the overall chatbot Provides methods to begin running the chatbot.
@@ -12,6 +13,7 @@ import cheryl.ui.MainUI;
  */
 public class Cheryl {
   private final MainManager manager;
+  private final FileSystem fileSystem;
 
   /**
    * Constructs a new Cheryl instance. Initializes the manager with tasks loaded from the file
@@ -19,6 +21,7 @@ public class Cheryl {
    */
   public Cheryl() {
     this.manager = new MainManager();
+    this.fileSystem = new FileSystem();
   }
 
   /** Runs the main loop until user gives exit command. */
@@ -38,7 +41,11 @@ public class Cheryl {
   /** For use with GUI code to return response String **/
     public String run(String userInput) {
         assert userInput != null;
-        return manager.run(userInput);
+        fileSystem.read(manager);
+        String returnString = manager.run(userInput);
+        fileSystem.write(manager.write());
+        manager.clear();
+        return returnString;
     }
 
     /**

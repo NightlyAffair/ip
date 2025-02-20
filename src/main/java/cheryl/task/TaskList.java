@@ -1,6 +1,8 @@
 package cheryl.task;
 
+import cheryl.manager.DataTypes;
 import cheryl.util.SearchSystem;
+import cheryl.util.Serialized;
 
 import java.util.ArrayList;
 
@@ -11,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Nithvin Leelakrishnan
  */
-public class TaskList {
+public class TaskList implements Serialized {
 
   /** The list that stores all the tasks. */
   private final ArrayList<Task> taskList;
@@ -64,6 +66,11 @@ public class TaskList {
     Event event = new Event(userInput);
     this.taskList.add(event);
     return addTaskString(event.toString());
+  }
+
+  public String addTask(Task task) {
+    this.taskList.add(task);
+    return addTaskString(task.toString());
   }
 
   /**
@@ -179,5 +186,20 @@ public class TaskList {
    */
   public int size() {
     return this.taskList.size();
+  }
+
+  public String serialize() {
+    StringBuilder sb = new StringBuilder();
+    for (Task task : taskList) {
+      sb.append(DataTypes.TASK) .append("|||");
+      sb.append(task.serialize());
+      sb.append("\n");
+    }
+
+    return sb.toString();
+  }
+
+  public void clear() {
+    this.taskList.clear();
   }
 }

@@ -88,4 +88,22 @@ public class MainManager implements Manager {
                 return this.run(userInput);
         }
     }
+
+    public String write() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(taskManager.write());
+        return sb.toString();
+    }
+
+    public void read(String readString) {
+        switch (DataTypes.valueOf(Parser.deserializeCommand(readString).toUpperCase())) {
+            case TASK -> {
+                this.taskManager.read(Parser.deserializeDetails(readString));
+            }
+        }
+    }
+
+    public void clear() {
+        taskManager.clear();
+    }
 }
