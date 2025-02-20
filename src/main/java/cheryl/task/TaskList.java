@@ -24,15 +24,6 @@ public class TaskList implements Serialized {
   }
 
   /**
-   * Constructs a new TaskList with the specified list of tasks.
-   *
-   * @param taskList The list of tasks to initialize the TaskList with.
-   */
-  public TaskList(ArrayList<Task> taskList) {
-    this.taskList = taskList;
-  }
-
-  /**
    * Adds a Todo task to the task list and returns a formatted string confirming the addition.
    *
    * @param userInput The description of the Todo task to add.

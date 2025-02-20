@@ -57,6 +57,9 @@ public class MainManager implements Manager {
                 case "TASK":
                     this.setPointer(ManagerTypes.TASKMANAGER);
                     return TaskManager.options();
+                case "CONTACT":
+                    this.setPointer(ManagerTypes.CONTACTMANAGER);
+                    return ContactManager.options();
                 default:
                     throw new OutOfIndexException();
             }
@@ -110,8 +113,11 @@ public class MainManager implements Manager {
     }
 
     public String convert(String command) {
-        if(command.equals("1")) {
+        if (command.equals("1")) {
             return DataTypes.TASK.toString();
+        }
+        if (command.equals("2")) {
+            return DataTypes.CONTACT.toString();
         }
         return command;
     }

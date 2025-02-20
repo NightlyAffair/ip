@@ -22,10 +22,6 @@ public class TaskManager implements Manager {
     this.pointer = ManagerTypes.TASKMANAGER;
   }
 
-  public TaskManager(ArrayList<Task> taskList) {
-    this.taskList = new TaskList(taskList);
-  }
-
   public String run() {
     TaskCommands command;
     TaskUI.printIntroString();
