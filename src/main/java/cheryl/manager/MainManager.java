@@ -49,24 +49,26 @@ public class MainManager implements Manager {
             }
             return returnValue;
         }
-        String command = Parser.mainCommand(userInput);
+        String command = convert(Parser.mainCommand(userInput).toUpperCase());
+
         try {
+            DataTypes.valueOf(command);
             switch (command) {
-                case "1":
+                case "TASK":
                     this.setPointer(ManagerTypes.TASKMANAGER);
                     return TaskManager.options();
                 default:
                     throw new OutOfIndexException();
             }
-        } catch (OutOfIndexException e) {
-            return e.getMessage();
+        } catch (OutOfIndexException | IllegalArgumentException e) {
+            return options();
         }
     }
 
     public static String options() {
         StringBuilder sb = new StringBuilder();
         sb.append("Please choose one of the following options:" + "\n");
-        sb.append("[1] Tasks");
+        sb.append("[1] Task");
 
         return sb.toString();
     }
@@ -105,5 +107,12 @@ public class MainManager implements Manager {
 
     public void clear() {
         taskManager.clear();
+    }
+
+    public String convert(String command) {
+        if(command.equals("1")) {
+            return DataTypes.TASK.toString();
+        }
+        return command;
     }
 }

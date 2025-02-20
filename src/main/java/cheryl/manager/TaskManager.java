@@ -42,12 +42,18 @@ public class TaskManager implements Manager {
   }
 
   public String run(String userInput) {
-    if(userInput.equals("quit")) {
-      return userInput;
-    }
-    TaskCommands command = TaskCommands.valueOf(Parser.mainCommand(userInput).toUpperCase());
+      if (userInput.equals("quit")) {
+          return userInput;
+      }
 
-    return runCommand(command, userInput);
+      TaskCommands command;
+      try {
+          command = TaskCommands.valueOf(Parser.mainCommand(userInput).toUpperCase());
+      } catch (IllegalArgumentException e) {
+          return options();
+      }
+
+      return runCommand(command, userInput);
   }
 
   public String runCommand(TaskCommands command, String userCommand) {
