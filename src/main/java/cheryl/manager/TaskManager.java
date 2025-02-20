@@ -8,13 +8,17 @@ import cheryl.commands.TaskCommands;
 import cheryl.ui.TaskUI;
 import cheryl.util.FileSystem;
 import cheryl.task.TaskList;
+import javafx.scene.web.HTMLEditorSkin;
+
 import java.util.ArrayList;
 
 public class TaskManager implements Manager {
   private final TaskList taskList;
+  private ManagerTypes pointer;
 
   TaskManager() {
     this.taskList = new TaskList();
+    this.pointer = ManagerTypes.TASKMANAGER;
   }
 
   public TaskManager(ArrayList<Task> taskList) {
@@ -34,6 +38,15 @@ public class TaskManager implements Manager {
       }
     }
     return "0";
+  }
+
+  public String run(String userInput) {
+    if(userInput.equals("quit")) {
+      return userInput;
+    }
+    TaskCommands command = TaskCommands.valueOf(Parser.mainCommand(userInput).toUpperCase());
+
+    return runCommand(command, userInput);
   }
 
   public String runCommand(TaskCommands command, String userCommand) {
@@ -85,5 +98,13 @@ public class TaskManager implements Manager {
 
   public void pushFile() {
     new FileSystem(taskList.get()).pushFile();
+  }
+
+  public void setPointer(ManagerTypes pointer) {
+    this.pointer = pointer;
+  }
+
+  public static String options() {
+    return TaskUI.helpString();
   }
 }

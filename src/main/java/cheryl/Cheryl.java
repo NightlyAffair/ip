@@ -38,7 +38,6 @@ public class Cheryl {
   /** For use with GUI code to return response String **/
     public String run(String userInput) {
         assert userInput != null;
-        MainUI.printOutro();
         return manager.run(userInput);
     }
 

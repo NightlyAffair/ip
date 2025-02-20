@@ -7,12 +7,15 @@ import cheryl.ui.TaskUI;
 
 public class MainManager implements Manager {
 
+    private ManagerTypes pointer;
     private final TaskManager taskManager;
 
     public MainManager() {
         this.taskManager = new TaskManager();
+        this.pointer = ManagerTypes.MAINMANAGER;
     }
 
+    //Used in CLI
     public String run() {
         MainUI.printOptions();
         Boolean runMainLoop = true;
@@ -36,12 +39,22 @@ public class MainManager implements Manager {
         return "bye";
     }
 
+    //Used in JavaFX
     public String run(String userInput) {
+        if(!(pointer == ManagerTypes.MAINMANAGER)) {
+            String returnValue = runPointer(userInput);
+            if(returnValue.equals("quit")) {
+                setPointer(ManagerTypes.MAINMANAGER);
+                return options();
+            }
+            return returnValue;
+        }
         String command = Parser.mainCommand(userInput);
         try {
             switch (command) {
                 case "1":
-                    return taskManager.run();
+                    this.setPointer(ManagerTypes.TASKMANAGER);
+                    return TaskManager.options();
                 default:
                     throw new OutOfIndexException();
             }
@@ -60,5 +73,19 @@ public class MainManager implements Manager {
 
     public void pushFile() {
 
+    }
+
+    public void setPointer(ManagerTypes pointer) {
+        this.pointer = pointer;
+    }
+
+    public String runPointer(String userInput) {
+        switch (pointer) {
+            case TASKMANAGER:
+                return taskManager.run(userInput);
+            default:
+                setPointer(ManagerTypes.MAINMANAGER);
+                return this.run(userInput);
+        }
     }
 }
