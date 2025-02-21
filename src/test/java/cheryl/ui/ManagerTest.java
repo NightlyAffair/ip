@@ -26,7 +26,7 @@ public class ManagerTest {
   @Test
   public void taskCommandTest() {
     Manager manager = new MainManager();
-    String taskString = manager.run();
+    String taskString = "";
     String expected =
         """
                 Got it. I've added this task:

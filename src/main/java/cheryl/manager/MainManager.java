@@ -1,5 +1,6 @@
 package cheryl.manager;
 
+import cheryl.contact.ContactManager;
 import cheryl.exception.OutOfIndexException;
 import cheryl.inputproccessor.Parser;
 import cheryl.ui.MainUI;
@@ -9,10 +10,12 @@ public class MainManager implements Manager {
 
     private ManagerTypes pointer;
     private final TaskManager taskManager;
+    private final ContactManager contactManager;
 
     public MainManager() {
         this.taskManager = new TaskManager();
         this.pointer = ManagerTypes.MAINMANAGER;
+        this.contactManager = new ContactManager();
     }
 
     //Used in CLI
@@ -72,12 +75,10 @@ public class MainManager implements Manager {
         StringBuilder sb = new StringBuilder();
         sb.append("Please choose one of the following options:" + "\n");
         sb.append("[1] Task");
+        sb.append("\n");
+        sb.append("[2] Contact");
 
         return sb.toString();
-    }
-
-    public void pushFile() {
-
     }
 
     public void setPointer(ManagerTypes pointer) {
@@ -88,6 +89,8 @@ public class MainManager implements Manager {
         switch (pointer) {
             case TASKMANAGER:
                 return taskManager.run(userInput);
+            case CONTACTMANAGER:
+                return contactManager.run(userInput);
             default:
                 setPointer(ManagerTypes.MAINMANAGER);
                 return this.run(userInput);
@@ -97,6 +100,7 @@ public class MainManager implements Manager {
     public String write() {
         StringBuilder sb = new StringBuilder();
         sb.append(taskManager.write());
+        sb.append(contactManager.write());
         return sb.toString();
     }
 
@@ -104,6 +108,9 @@ public class MainManager implements Manager {
         switch (DataTypes.valueOf(Parser.deserializeCommand(readString).toUpperCase())) {
             case TASK -> {
                 this.taskManager.read(Parser.deserializeDetails(readString));
+            }
+            case CONTACT -> {
+                this.contactManager.read(Parser.deserializeDetails(readString));
             }
         }
     }

@@ -10,7 +10,7 @@ public class ContactManager implements Manager {
     private final ContactList contactList;
     private ManagerTypes pointer;
 
-    ContactManager() {
+    public ContactManager() {
         this.contactList = new ContactList();
         this.pointer = ManagerTypes.CONTACTMANAGER;
     }
@@ -31,37 +31,56 @@ public class ContactManager implements Manager {
     }
 
     public String runCommand(ContactCommands command, String userInput) {
-        switch (command) {
+        String details = Parser.details(userInput);
 
+        switch (command) {
+            case ADD -> {
+                return contactList.add(details);
+            }
+            case REMOVE -> {
+                return contactList.remove(details);
+            }
+            case EDIT -> {
+                return contactList.edit(details);
+            }
+            case LIST -> {
+                return contactList.list();
+            }
         }
+
+        return "Invalid command" + "\n" + options();
     }
 
     public static String options() {
-        return "To add: /n name /p phone number /e emailaddress@gmail.com /a Singapore Marina Bay Sands";
+        StringBuilder sb = new StringBuilder();
+        String addString = "To add: add /n name /p phone number /e emailaddress@gmail.com /a Singapore Marina Bay Sands";
+        sb.append(addString);
+        sb.append("\n");
+        String removeString = "To remove: remove name";
+        sb.append(removeString);
+        sb.append("\n");
+        String editString = "To edit a contact: edit /n name /p phone number";
+        sb.append(editString);
+        return sb.toString();
     }
 
     @Override
     public void setPointer(ManagerTypes pointer) {
-
-    }
-
-    @Override
-    public String run() {
-        return "";
+        this.pointer = pointer;
     }
 
     @Override
     public String write() {
-        return "";
+        return contactList.serialize();
     }
 
     @Override
     public void read(String readString) {
-
+        contactList.read(readString);
     }
 
     @Override
     public void clear() {
-
+        contactList.clear();
     }
 }

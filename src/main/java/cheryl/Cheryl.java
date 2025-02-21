@@ -34,7 +34,6 @@ public class Cheryl {
         isMainLoopRunning = false;
       }
     }
-    this.manager.pushFile();
     MainUI.printOutro();
   }
 

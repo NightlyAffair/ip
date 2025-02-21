@@ -5,9 +5,9 @@ import cheryl.util.Serialized;
 public class Contact implements Serialized {
 
     private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
+    public final String phone;
+    public final String email;
+    public final String address;
 
     Contact(String name, String phone, String email, String address) {
         this.name = name;
@@ -22,6 +22,6 @@ public class Contact implements Serialized {
 
     @Override
     public String serialize() {
-        return "";
+        return "/n" + name + "/p" + phone + "/e" + email + "/a" + address;
     }
 }
