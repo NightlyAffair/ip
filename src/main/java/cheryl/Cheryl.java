@@ -13,7 +13,6 @@ import cheryl.util.FileSystem;
  */
 public class Cheryl {
   private final MainManager manager;
-  private final FileSystem fileSystem;
 
   /**
    * Constructs a new Cheryl instance. Initializes the manager with tasks loaded from the file
@@ -21,29 +20,15 @@ public class Cheryl {
    */
   public Cheryl() {
     this.manager = new MainManager();
-    this.fileSystem = new FileSystem();
-  }
-
-  /** Runs the main loop until user gives exit command. */
-  public void run() {
-    MainUI.printIntro();
-    Boolean isMainLoopRunning = true;
-    while (isMainLoopRunning) {
-      String exitCommand = manager.run();
-      if (exitCommand.equals("bye")) {
-        isMainLoopRunning = false;
-      }
-    }
-    MainUI.printOutro();
   }
 
   /** For use with GUI code to return response String **/
     public String run(String userInput) {
-        assert userInput != null;
-        fileSystem.read(manager);
-        String returnString = manager.run(userInput);
-        fileSystem.write(manager.write());
         manager.clear();
+        assert userInput != null;
+        FileSystem.read(manager);
+        String returnString = manager.run(userInput);
+        FileSystem.write(manager.write());
         return returnString;
     }
 
@@ -54,6 +39,6 @@ public class Cheryl {
      * @param args Command-line arguments (not used).
      */
     public static void main(String[] args) {
-        new Cheryl().run();
+        new Cheryl().run(Parser.scan());
     }
 }

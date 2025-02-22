@@ -1,14 +1,11 @@
 package cheryl.util;
 
-import cheryl.exception.FileCorruptedException;
 import cheryl.manager.Manager;
-import cheryl.task.*;
-import cheryl.task.TaskType;
-import cheryl.inputproccessor.TimeProcessor;
+
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 /**
  * Represents the file system that handles the reading, writing, and serialization of task data. It
@@ -20,7 +17,7 @@ import java.util.ArrayList;
 public class FileSystem {
 
   /** The file path where data are stored. */
-  private final String pathName = "./data/tasks.txt";
+  private final static String PATHNAME = "./data/tasks.txt";
 
 
   public FileSystem() {
@@ -32,27 +29,31 @@ public class FileSystem {
    *
    * @return The list of tasks read from the file, or an empty list if the file doesn't exist.
    */
-  public void read(Manager manager) {
+  public static void read(Manager manager) {
     try {
-      FileReader fr = new FileReader(pathName);
+      FileReader fr = new FileReader(PATHNAME);
       BufferedReader br = new BufferedReader(fr);
       String line;
       while ((line = br.readLine()) != null) {
         manager.read(line);
       }
+      br.close();
     } catch (IOException e) {
       System.err.println(e.getMessage());
     }
+
   }
 
   /**
    * Saves the current tasks to the file. It first ensures the directory exists, then writes the
    * serialized tasks to the specified file.
    */
-  public void write(String string) {
+  public static void write(String string) {
     try {
-      Files.createDirectories(Paths.get(pathName).getParent());
-      try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathName))) {
+      Path filePath = Paths.get(PATHNAME);
+      Files.createDirectories(filePath.getParent());
+      Files.deleteIfExists(filePath);
+      try (BufferedWriter bw = new BufferedWriter(new FileWriter(PATHNAME))) {
         bw.write(string);
       }
     } catch (IOException e) {

@@ -17,21 +17,15 @@ public class ContactList implements Serialized {
     }
 
     public String add(String userInput) {
-        // Split the string by known markers
-        Pattern pattern = Pattern.compile("/([npea])\\s+([^/]+)");
-        Matcher matcher = pattern.matcher(userInput);
-
-        // Store extracted values in a HashMap
-        HashMap<Character, String> values = new HashMap<>();
-
-        while (matcher.find()) {
-            char key = matcher.group(1).charAt(0);  // 'n', 'p', 'e', or 'a'
-            String value = matcher.group(2).trim(); // Extracted value
-            values.put(key, value);
-        }
+        HashMap<Character, String> values = extract(userInput);
 
         // Extract values safely
-        String name = values.getOrDefault('n', "");
+        String name = values.get('n');
+        if(name == null) {
+            return "Must provide a name for contact";
+        } else if (exists(name)) {
+            return "Name already exists";
+        }
         String phone = values.getOrDefault('p', "");
         String email = values.getOrDefault('e', "");
         String address = values.getOrDefault('a', "");
@@ -69,20 +63,14 @@ public class ContactList implements Serialized {
     }
 
     public String edit(String userInput) {
-        // Split the string by known markers
-        String[] parts = userInput.split(" /[npea] ");  // Splits at ' /n ', ' /p ', ' /e ', ' /a '
 
-        // Assign values (ignoring "To add:")
-        String name = parts[1];
+        HashMap<Character, String> values = extract(userInput);
 
-        Contact contactToReplace = find(name);
-        if (contactToReplace == null) {
-            return "invalid contact";
-        }
-
-        String phone = parts.length > 2 ? parts[2] : contactToReplace.phone;
-        String email = parts.length > 3 ? parts[3] : contactToReplace.email;
-        String address = parts.length > 4 ? parts[4] : contactToReplace.address;
+        // Extract values safely
+        String name = values.getOrDefault('n', "");
+        String phone = values.getOrDefault('p', "");
+        String email = values.getOrDefault('e', "");
+        String address = values.getOrDefault('a', "");
 
         Contact contact = new Contact(name, phone, email, address);
         remove(name);
@@ -123,5 +111,30 @@ public class ContactList implements Serialized {
             }
         }
         return stringBuilder.toString();
+    }
+
+    public HashMap<Character, String> extract(String userInput) {
+        Pattern pattern = Pattern.compile("/([npea])\\s+([^/]+)");
+        Matcher matcher = pattern.matcher(userInput);
+
+        // Store extracted values in a HashMap
+        HashMap<Character, String> values = new HashMap<>();
+
+        while (matcher.find()) {
+            char key = matcher.group(1).charAt(0);  // 'n', 'p', 'e', or 'a'
+            String value = matcher.group(2).trim(); // Extracted value
+            values.put(key, value);
+        }
+
+        return values;
+    }
+
+    public boolean exists(String name) {
+        for(Contact contact : contactList) {
+            if(contact.toString().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -22,6 +22,6 @@ public class Contact implements Serialized {
 
     @Override
     public String serialize() {
-        return "/n" + name + "/p" + phone + "/e" + email + "/a" + address;
+        return "/n " + name + " /p " + phone + " /e " + email + " /a " + address;
     }
 }

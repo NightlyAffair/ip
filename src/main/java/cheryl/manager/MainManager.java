@@ -13,8 +13,8 @@ public class MainManager implements Manager {
     private final ContactManager contactManager;
 
     public MainManager() {
-        this.taskManager = new TaskManager();
         this.pointer = ManagerTypes.MAINMANAGER;
+        this.taskManager = new TaskManager();
         this.contactManager = new ContactManager();
     }
 

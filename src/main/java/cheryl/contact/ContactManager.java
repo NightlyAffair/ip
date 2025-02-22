@@ -61,6 +61,12 @@ public class ContactManager implements Manager {
         sb.append("\n");
         String editString = "To edit a contact: edit /n name /p phone number";
         sb.append(editString);
+        sb.append("\n");
+        String listString = "To list: list";
+        sb.append(listString);
+        sb.append("\n");
+        String quitString = "To quit: quit";
+        sb.append(quitString);
         return sb.toString();
     }
 
