@@ -24,4 +24,8 @@ public class Contact implements Serialized {
     public String serialize() {
         return "/n " + name + " /p " + phone + " /e " + email + " /a " + address;
     }
+
+    public String getName() {
+        return name;
+    }
 }

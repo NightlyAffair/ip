@@ -131,7 +131,7 @@ public class ContactList implements Serialized {
 
     public boolean exists(String name) {
         for(Contact contact : contactList) {
-            if(contact.toString().equals(name)) {
+            if(contact.getName().equals(name)) {
                 return true;
             }
         }
