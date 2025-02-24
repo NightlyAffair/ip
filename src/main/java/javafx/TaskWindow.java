@@ -9,22 +9,18 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 public class TaskWindow {
-    @FXML
-    private ScrollPane scrollPane;
-    @FXML
-    private VBox dialogContainer;
-    @FXML
-    private TextField userInput;
-    @FXML
-    private Button sendButton;
+  @FXML private ScrollPane scrollPane;
+  @FXML private VBox dialogContainer;
+  @FXML private TextField userInput;
+  @FXML private Button sendButton;
 
-    private TaskManager taskManager;
+  private TaskManager taskManager;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image cherylImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+  private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+  private Image cherylImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
-    @FXML
-    public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-    }
+  @FXML
+  public void initialize() {
+    scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+  }
 }

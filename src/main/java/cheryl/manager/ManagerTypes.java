@@ -1,7 +1,7 @@
 package cheryl.manager;
 
 public enum ManagerTypes {
-    MAINMANAGER,
-    TASKMANAGER,
-    CONTACTMANAGER;
+  MAINMANAGER,
+  TASKMANAGER,
+  CONTACTMANAGER;
 }

@@ -1,40 +1,75 @@
 package cheryl.ui;
 
 import cheryl.manager.MainManager;
-import cheryl.manager.Manager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ManagerTest {
   @Test
-  public void helpStringTest() {
+  public void TaskTestNumber() {
     MainManager manager = new MainManager();
-    String helpString = manager.run();
+    String helpString = manager.run("1");
     String expected =
         """
-                Say todo to track a todo like todo borrow book
-                Say deadline to track a deadline like deadline return book /by 2/12/2019 1800
-                Say event to track a event like event project meeting /from 2/12/2019 1800 /to 2/12/2019 2000
-                Say list to see your tasks in the list
-                Say mark 1 to mark task 1 in the list as done
-                Say unmark 1 to unmark task 1 in the list as done
-                Say delete 1 to delete task 1 in the list""";
+                To track a todo: todo borrow book
+                To track a deadline: deadline return book /by 2/12/2019 1800
+                To track a event like event project meeting /from 2/12/2019 1800 /to 2/12/2019 2000
+                To see your tasks in the list: list
+                To mark task 1 in the list as done: mark 1
+                To unmark task 1 in the list as done unmark 1
+                To delete task 1 in the list: delete 1
+                To search tasks with book in the list: search book
+                To quit: quit""";
 
     Assertions.assertEquals(expected, helpString);
   }
 
   @Test
-  public void taskCommandTest() {
-    Manager manager = new MainManager();
-    String taskString = "";
+  public void TaskTestString() {
+    MainManager manager = new MainManager();
+    String helpString = manager.run("task");
     String expected =
         """
-                Got it. I've added this task:
-                    \
-                [T][ ] borrow book
-                \
-                Now you have 1 tasks in the list.""";
+                    To track a todo: todo borrow book
+                    To track a deadline: deadline return book /by 2/12/2019 1800
+                    To track a event like event project meeting /from 2/12/2019 1800 /to 2/12/2019 2000
+                    To see your tasks in the list: list
+                    To mark task 1 in the list as done: mark 1
+                    To unmark task 1 in the list as done unmark 1
+                    To delete task 1 in the list: delete 1
+                    To search tasks with book in the list: search book
+                    To quit: quit""";
 
-    Assertions.assertEquals(expected, taskString);
+    Assertions.assertEquals(expected, helpString);
+  }
+
+  @Test
+  public void ContactTestNumber() {
+    MainManager manager = new MainManager();
+    String contactString = manager.run("2");
+    String expected =
+        """
+                To add: add /n name /p phone number /e emailaddress@gmail.com /a Singapore Marina Bay Sands
+                To remove: remove name
+                To edit a contact: edit /n name /p phone number
+                To list: list
+                To quit: quit""";
+
+    Assertions.assertEquals(expected, contactString);
+  }
+
+  @Test
+  public void ContactTestString() {
+    MainManager manager = new MainManager();
+    String contactString = manager.run("contact");
+    String expected =
+        """
+                    To add: add /n name /p phone number /e emailaddress@gmail.com /a Singapore Marina Bay Sands
+                    To remove: remove name
+                    To edit a contact: edit /n name /p phone number
+                    To list: list
+                    To quit: quit""";
+
+    Assertions.assertEquals(expected, contactString);
   }
 }

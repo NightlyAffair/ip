@@ -1,11 +1,6 @@
 # Cheryl User Guide
-
-// Update the title above to match the actual product name
-
-// Product screenshot goes here
 ![Cheryl Chabot AI](Ui.png)
 
-// Product intro goes here
 Cheryl Chatbot is your personal manager for your tasks and your contacts.
 
 > “Your mind is for having ideas, not holding them.” – David Allen ([source](https://dansilvestre.com/productivity-quotes))

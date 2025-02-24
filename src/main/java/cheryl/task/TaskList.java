@@ -3,7 +3,6 @@ package cheryl.task;
 import cheryl.manager.DataTypes;
 import cheryl.util.SearchSystem;
 import cheryl.util.Serialized;
-
 import java.util.ArrayList;
 
 /**
@@ -182,7 +181,7 @@ public class TaskList implements Serialized {
   public String serialize() {
     StringBuilder sb = new StringBuilder();
     for (Task task : taskList) {
-      sb.append(DataTypes.TASK) .append("|||");
+      sb.append(DataTypes.TASK).append("|||");
       sb.append(task.serialize());
       sb.append("\n");
     }

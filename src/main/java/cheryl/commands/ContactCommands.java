@@ -1,8 +1,8 @@
 package cheryl.commands;
 
 public enum ContactCommands {
-    ADD,
-    REMOVE,
-    EDIT,
-    LIST;
+  ADD,
+  REMOVE,
+  EDIT,
+  LIST;
 }

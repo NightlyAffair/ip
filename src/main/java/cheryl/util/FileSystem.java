@@ -1,7 +1,6 @@
 package cheryl.util;
 
 import cheryl.manager.Manager;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,11 +16,9 @@ import java.nio.file.Paths;
 public class FileSystem {
 
   /** The file path where data are stored. */
-  private final static String PATHNAME = "./data/tasks.txt";
+  private static final String PATHNAME = "./data/tasks.txt";
 
-
-  public FileSystem() {
-  }
+  public FileSystem() {}
 
   /**
    * Retrieves the list of tasks from the file. If the file exists, it deserializes the tasks and
@@ -41,7 +38,6 @@ public class FileSystem {
     } catch (IOException e) {
       System.err.println(e.getMessage());
     }
-
   }
 
   /**
@@ -60,6 +56,4 @@ public class FileSystem {
       System.out.println("Error saving file");
     }
   }
-
-
 }

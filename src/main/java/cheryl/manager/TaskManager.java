@@ -1,15 +1,13 @@
 package cheryl.manager;
 
+import cheryl.commands.TaskCommands;
 import cheryl.exception.FileCorruptedException;
 import cheryl.exception.MissingInputException;
 import cheryl.exception.OutOfIndexException;
 import cheryl.inputproccessor.Parser;
 import cheryl.inputproccessor.TimeProcessor;
 import cheryl.task.*;
-import cheryl.commands.TaskCommands;
 import cheryl.ui.TaskUI;
-
-import java.util.ArrayList;
 
 public class TaskManager implements Manager {
   private final TaskList taskList;
@@ -29,25 +27,25 @@ public class TaskManager implements Manager {
         command = TaskCommands.valueOf((Parser.mainCommand(userCommand)).toUpperCase());
         System.out.println(runCommand(command, userCommand));
       } catch (IllegalArgumentException e) {
-        System.out.println( "Huh?? Please enter a valid input...");
+        System.out.println("Huh?? Please enter a valid input...");
       }
     }
     return "0";
   }
 
   public String run(String userInput) {
-      if (userInput.equals("quit")) {
-          return userInput;
-      }
+    if (userInput.equals("quit")) {
+      return userInput;
+    }
 
-      TaskCommands command;
-      try {
-          command = TaskCommands.valueOf(Parser.mainCommand(userInput).toUpperCase());
-      } catch (IllegalArgumentException e) {
-          return options();
-      }
+    TaskCommands command;
+    try {
+      command = TaskCommands.valueOf(Parser.mainCommand(userInput).toUpperCase());
+    } catch (IllegalArgumentException e) {
+      return options();
+    }
 
-      return runCommand(command, userInput);
+    return runCommand(command, userInput);
   }
 
   public String runCommand(TaskCommands command, String userCommand) {
@@ -120,11 +118,13 @@ public class TaskManager implements Manager {
           taskList.addTask(new Todo(details[1], details[2]));
         }
         case DEADLINE -> {
-          taskList.addTask(new Deadline(
+          taskList.addTask(
+              new Deadline(
                   new Task(details[1], details[2]), new TimeProcessor(details[3]).getDateTime()));
         }
         case EVENT -> {
-          taskList.addTask(new Event(
+          taskList.addTask(
+              new Event(
                   details[1],
                   details[2],
                   new TimeProcessor(details[3]).getDateTime(),

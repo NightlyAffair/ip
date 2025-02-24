@@ -37,6 +37,5 @@ public class Parser {
 
   public static String deserializeDetails(String userInput) {
     return userInput.split("\\|\\|\\|")[1];
-
   }
 }

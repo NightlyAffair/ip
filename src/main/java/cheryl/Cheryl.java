@@ -2,7 +2,6 @@ package cheryl;
 
 import cheryl.inputproccessor.Parser;
 import cheryl.manager.MainManager;
-import cheryl.ui.MainUI;
 import cheryl.util.FileSystem;
 
 /**
@@ -22,23 +21,23 @@ public class Cheryl {
     this.manager = new MainManager();
   }
 
-  /** For use with GUI code to return response String **/
-    public String run(String userInput) {
-        manager.clear();
-        assert userInput != null;
-        FileSystem.read(manager);
-        String returnString = manager.run(userInput);
-        FileSystem.write(manager.write());
-        return returnString;
-    }
+  /** For use with GUI code to return response String * */
+  public String run(String userInput) {
+    manager.clear();
+    assert userInput != null;
+    FileSystem.read(manager);
+    String returnString = manager.run(userInput);
+    FileSystem.write(manager.write());
+    return returnString;
+  }
 
-    /**
-     * Entry point of the cheryl.Cheryl chatbot application.
-     * Creates a new cheryl.Cheryl instance and starts the chatbot.
-     *
-     * @param args Command-line arguments (not used).
-     */
-    public static void main(String[] args) {
-        new Cheryl().run(Parser.scan());
-    }
+  /**
+   * Entry point of the cheryl.Cheryl chatbot application. Creates a new cheryl.Cheryl instance and
+   * starts the chatbot.
+   *
+   * @param args Command-line arguments (not used).
+   */
+  public static void main(String[] args) {
+    new Cheryl().run(Parser.scan());
+  }
 }
