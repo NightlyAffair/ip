@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -36,8 +37,34 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+
+        // Add listener to wait for scene to be set
+        sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                setupScaling();
+            }
+        });
     }
 
+    /**
+     * Sets up the scaling behavior for the dialog box
+     */
+    private void setupScaling() {
+        // Find the ScrollPane in the scene
+        ScrollPane scrollPane = (ScrollPane) getScene().lookup("#scrollPane");
+        if (scrollPane != null) {
+            // Bind the dialog box width to the ScrollPane width
+            prefWidthProperty().bind(scrollPane.widthProperty().subtract(20));
+
+            // Bind the label width to leave space for the image
+            dialog.prefWidthProperty().bind(
+                    scrollPane.widthProperty().subtract(displayPicture.getFitWidth() + 60)
+            );
+
+            // Make sure the dialog box uses the full width
+            HBox.setHgrow(dialog, javafx.scene.layout.Priority.ALWAYS);
+        }
+    }
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.

@@ -34,7 +34,7 @@ public class MainWindow extends AnchorPane {
     private Cheryl cheryl;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image cherylImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image cherylImage = new Image(this.getClass().getResourceAsStream("/images/CherylChatBot.png"));
 
     @FXML
     public void initialize() {
