@@ -1,5 +1,4 @@
 # Cheryl User Guide
-![Cheryl Chabot AI](Ui.png)
 
 Cheryl Chatbot is your personal manager for your tasks and your contacts.
 
