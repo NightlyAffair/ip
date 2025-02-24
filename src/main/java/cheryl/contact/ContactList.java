@@ -41,12 +41,33 @@ public class ContactList implements Serialized {
     }
 
     public String remove(String userInput) {
-        Contact contact = find(userInput);
-        if(contact == null) {
+        HashMap<Character, String> values = extract(userInput);
+
+        // Extract values safely
+        String name = values.getOrDefault('n', "");
+        String phone = values.getOrDefault('p', "");
+        String email = values.getOrDefault('e', "");
+        String address = values.getOrDefault('a', "");
+
+        Contact contact = new Contact(name, phone, email, address);
+        if(name == null) {
             return "invalid contact";
         }
-        contactList.remove(contact);
+        if(!removeByName(contact)) {
+            return "Contact not found";
+        }
         return removeString(contact);
+    }
+
+    public Boolean removeByName(Contact contact) {
+        String name = contact.getName();
+        for(int i = 0; i < contactList.size(); i++) {
+            if(contactList.get(i).getName().equals(name)) {
+                contactList.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public String removeString(Contact contact) {

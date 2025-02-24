@@ -1,3 +1,2 @@
 TASK|||TODO||[ ]||borrow
 CONTACT|||/n N /p  /e  /a 
-CONTACT|||/n Nithvin /p  /e  /a 
